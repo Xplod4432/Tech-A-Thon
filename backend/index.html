@@ -1,0 +1,915 @@
+<html lang="en">
+<head>
+    <meta charset="Base64">
+    <!-- <script src="./scriptweb.js"></script> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+      // Wait for document to load
+      document.addEventListener("DOMContentLoaded", function(event) {
+        document.documentElement.setAttribute("data-theme", "light");
+    
+        // Get our button switcher
+        var themeSwitcher = document.getElementById("theme-switcher");
+    
+        // When our button gets clicked
+        themeSwitcher.onclick = function() {
+          // Get the current selected theme, on the first run
+          // it should be `light`
+          var currentTheme = document.documentElement.getAttribute("data-theme");
+          var curSrc = document.getElementById('myImage').getAttribute("src");
+          var fontColor = document.getElementById('heading').style.color;
+          // Switch between `dark` and `light`
+          var switchToTheme = currentTheme === "dark" ? "light" : "dark";
+          curSrc === "img/CoOlErLogo.png" ? document.getElementById('myImage')
+             .src="img/CoOlErLogo2.png" : document.getElementById('myImage')
+             .src="img/CoOlErLogo.png";
+          fontColor === "black" ? document.getElementById('heading').style.color="white" : document.getElementById('heading').style.color="black";
+          // Set our currenet theme to the new one
+          document.documentElement.setAttribute("data-theme", switchToTheme);
+        }
+      });
+    </script>
+    <title>Document</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&family=PT+Mono&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css");
+
+:root {
+  --background: linear-gradient(232deg, rgba(111,216,255,1) 10%, rgba(255,158,219,1) 83%);
+}
+  [data-theme="dark"] {
+   --background: linear-gradient(180deg, rgba(0,14,98,1) 15%, rgba(0,0,0,1) 85%);
+}
+
+#theme-switcher {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 15px;
+}
+
+#outerHeading {
+  padding: 10px;
+  margin: 15px;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 70vh;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+body {
+ 
+  /* background: rgb(111,216,255); */
+background-image: var(--background);
+  font-family: Lato, sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  margin: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+a,
+a:visited,
+a:active {
+  color: black;
+}
+main {
+  min-height: 100vh;
+  display: inline;
+  align-items: center;
+  flex-direction: column;
+}
+.logo {
+  display: block;
+  justify-content: center;
+  margin-top: 10px;
+  width: 125px;
+  height: 60px;
+  /* background: url('./CoOlErLogo.png') no-repeat;
+  background-size: contain; */
+}
+.title {
+  color: black;
+  justify-content: center;
+  /* font-weight: 300; */
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: 25px;
+  /* margin-top: 1px; */
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+} 
+.window {
+  margin-top: 50px;
+  width: 60%;
+  height: 60%;
+  border-radius: 6px;
+  background: rgba(212, 211, 211, 0.468);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.window .window-header {
+  height: 25px;
+  background: Gainsboro;
+  position: relative;
+}
+.window .window-header .action-buttons {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  margin-top: -5px;
+  width: 10px;
+  height: 10px;
+  background: Crimson;
+  border-radius: 50%;
+  box-shadow: 15px 0 0 Orange, 30px 0 0 LimeGreen;
+}
+.editor {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  font-family: "PT Mono", monospace;
+  font-size: 14px;
+  font-weight: 400;
+  min-height: 400px;
+  letter-spacing: normal;
+  line-height: 20px;
+  padding: 10px;
+  resize: none !important;
+  tab-size: 4;
+}
+.editor.hljs {
+  padding: 10px;
+}
+.controls {
+  font-size: 14px;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -10px;
+  display: flex;
+}
+.controls > div:first-child > a {
+  display: inline-block;
+  width: 40px;
+}
+.windoW-2 {
+    width: 60%;
+    height: 200px;
+    border-radius: 6px;
+    background: rgba(212, 211, 211, 0.468);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .window-2 .window-header {
+    height: 25px;
+    background: Gainsboro;
+    position: relative;
+  }
+
+    </style>
+</head>
+<body>
+    <main class="view">
+      <div id="outerHeading">
+      <div style="float: left; width: 50%"><button id="theme-switcher" style="font-size: 15px; float: left;">Switch themes!</button></div>
+      <div style="float: right; width: 50%">
+        <!-- <div class="logo"> -->
+        <!-- <img src="./CoOlErLogo.png" > -->
+    <!-- </div> -->
+        <h1 class="title" id="heading" style="color:black">
+        Cool OnLine CompilEr
+        </h1></div>
+      </div>
+        <center>
+          
+          <form id="myform" name="myform" method="post" action="compilecode">
+          <!-- <select name="lang">
+            <option value="C">C</option>
+            <option value="C++">C++</option>
+            <option value="Java">Java</option>
+            <option value="Python">Python</option>
+          </select> -->
+        <div class="window">
+          <div class="window-header">
+            <div class="action-buttons"></div>
+            <div class="controls">
+                <select class="switch-language" name="lang">
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="Java">Java</option>
+                    <option value="Python">Python</option>
+                  </select>
+              <!-- <div>language: <a class="switch-language" href="">js</a></div> -->
+              <!-- <div>style: <a class="switch-style" href="">dracula</a></div> -->
+            </div>
+          </div>
+          <div class="window-body">
+            <div class="editor language-js" data-gram="false"><textarea id="code" name="code"></textarea></div>
+          </div>
+          </div>   
+        <div class="window-2">
+          <div class="window-header">
+            <div class="output">INPUT</div>
+          </div>
+            <div class="window-body">
+              <div class="editor language-js" data-gramm="false"><textarea rows="10" cols="100" id="input" name="input"></textarea></div>
+            </div>
+          </div>
+          Compile With Input :
+        <input type="radio" name="inputRadio" id="inputRadio" value="true" />yes
+        <input type="radio" name="inputRadio" id="inputRadio" value="false" />No
+        <br />
+        <input type="submit" value="submit" name="submit" />
+        <div class="window-2">
+          <div class="window-header">
+            <div class="output">OUTPUT</div>
+          </div>
+          <div class="window-body">
+            <div class="editor language-js" data-gramm="false"></div>
+          </div>
+        </div>   
+        </center>
+      </form>
+      </main>
+
+</body>
+<script>
+  const globalWindow = window;
+export function CodeJar(editor, highlight, opt = {}) {
+    const options = Object.assign({ tab: '\t', indentOn: /[({\[]$/, moveToNewLine: /^[)}\]]/, spellcheck: false, catchTab: true, preserveIdent: true, addClosing: true, history: true, window: globalWindow }, opt);
+    const window = options.window;
+    const document = window.document;
+    let listeners = [];
+    let history = [];
+    let at = -1;
+    let focus = false;
+    let callback;
+    let prev; // code content prior keydown event
+    editor.setAttribute('contenteditable', 'plaintext-only');
+    editor.setAttribute('spellcheck', options.spellcheck ? 'true' : 'false');
+    editor.style.outline = 'none';
+    editor.style.overflowWrap = 'break-word';
+    editor.style.overflowY = 'auto';
+    editor.style.whiteSpace = 'pre-wrap';
+    let isLegacy = false; // true if plaintext-only is not supported
+    highlight(editor);
+    if (editor.contentEditable !== 'plaintext-only')
+        isLegacy = true;
+    if (isLegacy)
+        editor.setAttribute('contenteditable', 'true');
+    const debounceHighlight = debounce(() => {
+        const pos = save();
+        highlight(editor, pos);
+        restore(pos);
+    }, 30);
+    let recording = false;
+    const shouldRecord = (event) => {
+        return !isUndo(event) && !isRedo(event)
+            && event.key !== 'Meta'
+            && event.key !== 'Control'
+            && event.key !== 'Alt'
+            && !event.key.startsWith('Arrow');
+    };
+    const debounceRecordHistory = debounce((event) => {
+        if (shouldRecord(event)) {
+            recordHistory();
+            recording = false;
+        }
+    }, 300);
+    const on = (type, fn) => {
+        listeners.push([type, fn]);
+        editor.addEventListener(type, fn);
+    };
+    on('keydown', event => {
+        if (event.defaultPrevented)
+            return;
+        prev = toString();
+        if (options.preserveIdent)
+            handleNewLine(event);
+        else
+            legacyNewLineFix(event);
+        if (options.catchTab)
+            handleTabCharacters(event);
+        if (options.addClosing)
+            handleSelfClosingCharacters(event);
+        if (options.history) {
+            handleUndoRedo(event);
+            if (shouldRecord(event) && !recording) {
+                recordHistory();
+                recording = true;
+            }
+        }
+        if (isLegacy)
+            restore(save());
+    });
+    on('keyup', event => {
+        if (event.defaultPrevented)
+            return;
+        if (event.isComposing)
+            return;
+        if (prev !== toString())
+            debounceHighlight();
+        debounceRecordHistory(event);
+        if (callback)
+            callback(toString());
+    });
+    on('focus', _event => {
+        focus = true;
+    });
+    on('blur', _event => {
+        focus = false;
+    });
+    on('paste', event => {
+        recordHistory();
+        handlePaste(event);
+        recordHistory();
+        if (callback)
+            callback(toString());
+    });
+    function save() {
+        const s = getSelection();
+        const pos = { start: 0, end: 0, dir: undefined };
+        let { anchorNode, anchorOffset, focusNode, focusOffset } = s;
+        if (!anchorNode || !focusNode)
+            throw 'error1';
+        // Selection anchor and focus are expected to be text nodes,
+        // so normalize them.
+        if (anchorNode.nodeType === Node.ELEMENT_NODE) {
+            const node = document.createTextNode('');
+            anchorNode.insertBefore(node, anchorNode.childNodes[anchorOffset]);
+            anchorNode = node;
+            anchorOffset = 0;
+        }
+        if (focusNode.nodeType === Node.ELEMENT_NODE) {
+            const node = document.createTextNode('');
+            focusNode.insertBefore(node, focusNode.childNodes[focusOffset]);
+            focusNode = node;
+            focusOffset = 0;
+        }
+        visit(editor, el => {
+            if (el === anchorNode && el === focusNode) {
+                pos.start += anchorOffset;
+                pos.end += focusOffset;
+                pos.dir = anchorOffset <= focusOffset ? '->' : '<-';
+                return 'stop';
+            }
+            if (el === anchorNode) {
+                pos.start += anchorOffset;
+                if (!pos.dir) {
+                    pos.dir = '->';
+                }
+                else {
+                    return 'stop';
+                }
+            }
+            else if (el === focusNode) {
+                pos.end += focusOffset;
+                if (!pos.dir) {
+                    pos.dir = '<-';
+                }
+                else {
+                    return 'stop';
+                }
+            }
+            if (el.nodeType === Node.TEXT_NODE) {
+                if (pos.dir != '->')
+                    pos.start += el.nodeValue.length;
+                if (pos.dir != '<-')
+                    pos.end += el.nodeValue.length;
+            }
+        });
+        // collapse empty text nodes
+        editor.normalize();
+        return pos;
+    }
+    function restore(pos) {
+        const s = getSelection();
+        let startNode, startOffset = 0;
+        let endNode, endOffset = 0;
+        if (!pos.dir)
+            pos.dir = '->';
+        if (pos.start < 0)
+            pos.start = 0;
+        if (pos.end < 0)
+            pos.end = 0;
+        // Flip start and end if the direction reversed
+        if (pos.dir == '<-') {
+            const { start, end } = pos;
+            pos.start = end;
+            pos.end = start;
+        }
+        let current = 0;
+        visit(editor, el => {
+            if (el.nodeType !== Node.TEXT_NODE)
+                return;
+            const len = (el.nodeValue || '').length;
+            if (current + len > pos.start) {
+                if (!startNode) {
+                    startNode = el;
+                    startOffset = pos.start - current;
+                }
+                if (current + len > pos.end) {
+                    endNode = el;
+                    endOffset = pos.end - current;
+                    return 'stop';
+                }
+            }
+            current += len;
+        });
+        if (!startNode)
+            startNode = editor, startOffset = editor.childNodes.length;
+        if (!endNode)
+            endNode = editor, endOffset = editor.childNodes.length;
+        // Flip back the selection
+        if (pos.dir == '<-') {
+            [startNode, startOffset, endNode, endOffset] = [endNode, endOffset, startNode, startOffset];
+        }
+        s.setBaseAndExtent(startNode, startOffset, endNode, endOffset);
+    }
+    function beforeCursor() {
+        const s = getSelection();
+        const r0 = s.getRangeAt(0);
+        const r = document.createRange();
+        r.selectNodeContents(editor);
+        r.setEnd(r0.startContainer, r0.startOffset);
+        return r.toString();
+    }
+    function afterCursor() {
+        const s = getSelection();
+        const r0 = s.getRangeAt(0);
+        const r = document.createRange();
+        r.selectNodeContents(editor);
+        r.setStart(r0.endContainer, r0.endOffset);
+        return r.toString();
+    }
+    function handleNewLine(event) {
+        if (event.key === 'Enter') {
+            const before = beforeCursor();
+            const after = afterCursor();
+            let [padding] = findPadding(before);
+            let newLinePadding = padding;
+            // If last symbol is "{" ident new line
+            if (options.indentOn.test(before)) {
+                newLinePadding += options.tab;
+            }
+            // Preserve padding
+            if (newLinePadding.length > 0) {
+                preventDefault(event);
+                event.stopPropagation();
+                insert('\n' + newLinePadding);
+            }
+            else {
+                legacyNewLineFix(event);
+            }
+            // Place adjacent "}" on next line
+            if (newLinePadding !== padding && options.moveToNewLine.test(after)) {
+                const pos = save();
+                insert('\n' + padding);
+                restore(pos);
+            }
+        }
+    }
+    function legacyNewLineFix(event) {
+        // Firefox does not support plaintext-only mode
+        // and puts <div><br></div> on Enter. Let's help.
+        if (isLegacy && event.key === 'Enter') {
+            preventDefault(event);
+            event.stopPropagation();
+            if (afterCursor() == '') {
+                insert('\n ');
+                const pos = save();
+                pos.start = --pos.end;
+                restore(pos);
+            }
+            else {
+                insert('\n');
+            }
+        }
+    }
+    function handleSelfClosingCharacters(event) {
+        const open = `([{'"`;
+        const close = `)]}'"`;
+        const codeAfter = afterCursor();
+        const codeBefore = beforeCursor();
+        const escapeCharacter = codeBefore.substr(codeBefore.length - 1) === '\\';
+        const charAfter = codeAfter.substr(0, 1);
+        if (close.includes(event.key) && !escapeCharacter && charAfter === event.key) {
+            // We already have closing char next to cursor.
+            // Move one char to right.
+            const pos = save();
+            preventDefault(event);
+            pos.start = ++pos.end;
+            restore(pos);
+        }
+        else if (open.includes(event.key)
+            && !escapeCharacter
+            && (`"'`.includes(event.key) || ['', ' ', '\n'].includes(charAfter))) {
+            preventDefault(event);
+            const pos = save();
+            const wrapText = pos.start == pos.end ? '' : getSelection().toString();
+            const text = event.key + wrapText + close[open.indexOf(event.key)];
+            insert(text);
+            pos.start++;
+            pos.end++;
+            restore(pos);
+        }
+    }
+    function handleTabCharacters(event) {
+        if (event.key === 'Tab') {
+            preventDefault(event);
+            if (event.shiftKey) {
+                const before = beforeCursor();
+                let [padding, start,] = findPadding(before);
+                if (padding.length > 0) {
+                    const pos = save();
+                    // Remove full length tab or just remaining padding
+                    const len = Math.min(options.tab.length, padding.length);
+                    restore({ start, end: start + len });
+                    document.execCommand('delete');
+                    pos.start -= len;
+                    pos.end -= len;
+                    restore(pos);
+                }
+            }
+            else {
+                insert(options.tab);
+            }
+        }
+    }
+    function handleUndoRedo(event) {
+        if (isUndo(event)) {
+            preventDefault(event);
+            at--;
+            const record = history[at];
+            if (record) {
+                editor.innerHTML = record.html;
+                restore(record.pos);
+            }
+            if (at < 0)
+                at = 0;
+        }
+        if (isRedo(event)) {
+            preventDefault(event);
+            at++;
+            const record = history[at];
+            if (record) {
+                editor.innerHTML = record.html;
+                restore(record.pos);
+            }
+            if (at >= history.length)
+                at--;
+        }
+    }
+    function recordHistory() {
+        if (!focus)
+            return;
+        const html = editor.innerHTML;
+        const pos = save();
+        const lastRecord = history[at];
+        if (lastRecord) {
+            if (lastRecord.html === html
+                && lastRecord.pos.start === pos.start
+                && lastRecord.pos.end === pos.end)
+                return;
+        }
+        at++;
+        history[at] = { html, pos };
+        history.splice(at + 1);
+        const maxHistory = 300;
+        if (at > maxHistory) {
+            at = maxHistory;
+            history.splice(0, 1);
+        }
+    }
+    function handlePaste(event) {
+        preventDefault(event);
+        const text = (event.originalEvent || event)
+            .clipboardData
+            .getData('text/plain')
+            .replace(/\r/g, '');
+        const pos = save();
+        insert(text);
+        highlight(editor);
+        restore({
+            start: Math.min(pos.start, pos.end) + text.length,
+            end: Math.min(pos.start, pos.end) + text.length,
+            dir: '<-',
+        });
+    }
+    function visit(editor, visitor) {
+        const queue = [];
+        if (editor.firstChild)
+            queue.push(editor.firstChild);
+        let el = queue.pop();
+        while (el) {
+            if (visitor(el) === 'stop')
+                break;
+            if (el.nextSibling)
+                queue.push(el.nextSibling);
+            if (el.firstChild)
+                queue.push(el.firstChild);
+            el = queue.pop();
+        }
+    }
+    function isCtrl(event) {
+        return event.metaKey || event.ctrlKey;
+    }
+    function isUndo(event) {
+        return isCtrl(event) && !event.shiftKey && event.code === 'KeyZ';
+    }
+    function isRedo(event) {
+        return isCtrl(event) && event.shiftKey && event.code === 'KeyZ';
+    }
+    function insert(text) {
+        text = text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#039;');
+        document.execCommand('insertHTML', false, text);
+    }
+    function debounce(cb, wait) {
+        let timeout = 0;
+        return (...args) => {
+            clearTimeout(timeout);
+            timeout = window.setTimeout(() => cb(...args), wait);
+        };
+    }
+    function findPadding(text) {
+        // Find beginning of previous line.
+        let i = text.length - 1;
+        while (i >= 0 && text[i] !== '\n')
+            i--;
+        i++;
+        // Find padding of the line.
+        let j = i;
+        while (j < text.length && /[ \t]/.test(text[j]))
+            j++;
+        return [text.substring(i, j) || '', i, j];
+    }
+    function toString() {
+        return editor.textContent || '';
+    }
+    function preventDefault(event) {
+        event.preventDefault();
+    }
+    function getSelection() {
+        var _a;
+        if (((_a = editor.parentNode) === null || _a === void 0 ? void 0 : _a.nodeType) == Node.DOCUMENT_FRAGMENT_NODE) {
+            return editor.parentNode.getSelection();
+        }
+        return window.getSelection();
+    }
+    return {
+        updateOptions(newOptions) {
+            Object.assign(options, newOptions);
+        },
+        updateCode(code) {
+            editor.textContent = code;
+            highlight(editor);
+        },
+        onUpdate(cb) {
+            callback = cb;
+        },
+        toString,
+        save,
+        restore,
+        recordHistory,
+        destroy() {
+            for (let [type, fn] of listeners) {
+                editor.removeEventListener(type, fn);
+            }
+        },
+    };
+}
+
+import { CodeJar } from "https://medv.io/codejar/codejar.js";
+
+const highlight = (editor) => {
+  // highlight.js does not trims old tags,
+  // let's do it by this hack.
+  editor.textContent = editor.textContent;
+  hljs.highlightBlock(editor);
+};
+
+const editor = document.querySelector(".editor");
+const jar = new CodeJar(editor, highlight);
+
+let currentStyle = 0;
+const styles = [
+  "dracula",
+  "github",
+  "solarized-dark",
+  "solarized-light",
+  "railscasts",
+  "monokai-sublime",
+  "mono-blue",
+  "tomorrow",
+  "color-brewer",
+  "zenburn",
+  "agate",
+  "androidstudio",
+  "atom-one-light",
+  "rainbow",
+  "vs",
+  "atom-one-dark"
+].map((name) => {
+  const link = document.createElement("link");
+  link.href = `https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/${name}.min.css`;
+  link.rel = "stylesheet";
+  link.disabled = "true";
+  document.head.appendChild(link);
+  return link;
+});
+styles[currentStyle].removeAttribute("disabled");
+const switchStyleButton = document.querySelector(".switch-style");
+
+switchStyleButton.addEventListener("click", (event) => {
+  event.preventDefault();
+
+  styles[currentStyle].setAttribute("disabled", "true");
+  currentStyle = (currentStyle + 1) % styles.length;
+  styles[currentStyle].removeAttribute("disabled");
+
+  let [, name] = styles[currentStyle].href.match(
+    /highlight.js.+?\/styles\/(.+?)\.min\.css$/
+  );
+  switchStyleButton.textContent = name;
+});
+
+let currentLanguage = 0;
+const languages = [
+  function () {
+    editor.className = "editor language-js";
+    jar.updateCode(`import {CodeJar} from '@medv/codejar';
+import Prism from 'prismjs';
+
+const editor = document.querySelector('#editor');
+const jar = new CodeJar(editor, Prism.highlightElement, {tab: '\\t'});
+
+// Update code
+jar.updateCode('let foo = bar');
+
+// Get code
+let code = jar.toString();
+
+// Listen to updates
+jar.onUpdate(code => {
+  console.log(code);
+});
+`);
+    jar.updateOptions({ tab: "  " });
+  },
+  function () {
+    editor.className = "editor language-md";
+    jar.updateCode(`# CodeJar
+An embeddable code editor for the browser 🍯
+
+## Features
+
+* Lightweight (**2 kB** only)
+* Preserves indentation on a new line
+* Adds closing brackets, quotes
+* Indents line with the \`Tab\` key
+* Supports *undo*/*redo*
+
+## Getting Started
+
+\`\`\`bash
+npm i @medv/codejar
+\`\`\``);
+    jar.updateOptions({ tab: "    " });
+  },
+  function () {
+    editor.className = "editor language-go";
+    jar.updateCode(`package main
+
+import (
+\t"fmt"
+\t"github.com/antonmedv/expr"
+)
+
+func main() {
+\tfmt.Println("Hello, CodeJar")
+
+\toutput, err := expr.Eval("1+2")
+\tif err != nil {
+\t\tpanic(err)
+\t}
+}
+`);
+    jar.updateOptions({ tab: "\t" });
+  },
+  function () {
+    editor.className = "editor language-ts";
+    jar.updateCode(`interface Person {
+    firstName: string;
+    lastName: string;
+}
+
+function greeter(person: Person) {
+    return "Hello, " + person.firstName + " " + person.lastName;
+}
+
+let user = {
+    firstName: "Jane",
+    lastName: "User"
+};
+
+document.body.textContent = greeter(user);`);
+    jar.updateOptions({ tab: "    " });
+  },
+  function () {
+    editor.className = "editor language-rust";
+    jar.updateCode(`#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+}
+
+fn main() {
+    let rect1 = Rectangle { width: 30, height: 50 };
+
+    println!(
+        "The area of the rectangle is {} square pixels.",
+        rect1.area()
+    );
+}`);
+    jar.updateOptions({ tab: "    " });
+  },
+  function () {
+    editor.className = "editor language-html";
+    jar.updateCode(`<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>CodeJar</title>
+
+  <meta name="author" content="Anton Medvedev">
+  <meta name="description" content="Micro Code Editor">
+</head>
+<body>
+  <h1>CodeJar — Micro Code Editor</h1>
+</body>
+</html>`);
+    jar.updateOptions({ tab: "  " });
+  },
+  function () {
+    editor.className = "editor language-kotlin";
+    jar.updateCode(`suspend fun main() = coroutineScope {
+    for (i in 0 until 10) {
+        launch {
+            delay(1000L - i * 10)
+            print("❤️$i ")
+        }
+    }
+}
+
+val positiveNumbers = list.filter { it > 0 }
+
+fun calculateTotal(obj: Any) {
+    if (obj is Invoice)
+        obj.calculateTotal()
+}`);
+    jar.updateOptions({ tab: "    " });
+  }
+];
+
+languages[currentLanguage]();
+
+const switchLanguageButton = document.querySelector(".switch-language");
+switchLanguageButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  currentLanguage = (currentLanguage + 1) % languages.length;
+  languages[currentLanguage]();
+  const [, name] = editor.className.match(/language-(\w+)/);
+  switchLanguageButton.textContent = name;
+});
+
+</script>
+</html>
